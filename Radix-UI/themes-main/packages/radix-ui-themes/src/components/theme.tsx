@@ -32,7 +32,7 @@ interface ThemeContextValue extends ThemeChangeHandlers {
   appearance: ThemeAppearance;
   accentColor: ThemeAccentColor;
   grayColor: ThemeGrayColor;
-  resolvedGrayColor: ThemeGrayColor;
+  resolvedGrayColor: Exclude<ThemeGrayColor, 'auto'>;
   panelBackground: ThemePanelBackground;
   radius: ThemeRadius;
   scaling: ThemeScaling;

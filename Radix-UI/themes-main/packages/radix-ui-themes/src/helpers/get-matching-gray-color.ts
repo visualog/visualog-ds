@@ -18,6 +18,7 @@ export function getMatchingGrayColor(accentColor: ThemeAccentColor) {
     case 'blue':
     case 'sky':
     case 'cyan':
+    case 'brand':
       return 'slate';
     case 'teal':
     case 'jade':
