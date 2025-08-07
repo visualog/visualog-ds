@@ -10,8 +10,12 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <Theme accentColor="brand">
-      {children}
-    </Theme>
+    <html lang="en" suppressHydrationWarning>
+      <body>
+        <Theme accentColor="brand">
+          {children}
+        </Theme>
+      </body>
+    </html>
   );
 }

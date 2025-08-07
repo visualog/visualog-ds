@@ -110,8 +110,7 @@ import { TabNavDemo } from './tab-nav-demo';
 
 export default function Sink() {
   return (
-    <html lang="en" className={styles.root} suppressHydrationWarning>
-      <body>
+    <>
         <NextThemeProvider>
           <Theme asChild>
             <div id="root">
@@ -5911,8 +5910,7 @@ export default function Sink() {
             </div>
           </Theme>
         </NextThemeProvider>
-      </body>
-    </html>
+      </>
   );
 }
 
