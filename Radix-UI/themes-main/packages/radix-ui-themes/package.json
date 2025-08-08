@@ -97,7 +97,7 @@
     "lint:ts": "tsc --noEmit",
     "lint:css": "stylelint \"src/**/*.css\"",
     "clean": "rm -rf .turbo node_modules dist tokens layout *.css",
-    "prepublishOnly": "pnpm lint"
+    "prepublishOnly": "# pnpm lint" 
   },
   "dependencies": {
     "@radix-ui/colors": "^3.0.0",

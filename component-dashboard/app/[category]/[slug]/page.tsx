@@ -1,8 +1,10 @@
 import { promises as fs } from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import { MdxContent } from '@/components/MdxContent'; // MdxContent 임포트
-import { Heading, Box, Text } from '@radix-ui/themes'; // Radix UI 컴포넌트 임포트
+import { MDXRemote } from 'next-mdx-remote/rsc'; // MDXRemote 임포트
+import { Heading, Box, Text, Button, Flex, Table, TextField } from '@radix-ui/themes'; // Radix UI 컴포넌트 임포트
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'; // SyntaxHighlighter 임포트
+import { MdxComponents } from '@/components/MdxComponents'; // MdxComponents 임포트
 
 interface Frontmatter {
   title: string;
@@ -49,11 +51,35 @@ export default async function ComponentPage({ params }: ComponentPageProps) {
   const { category, slug } = params;
   const { data, content } = await getMdxContent(category, slug);
 
+  // MDXRemote에 전달할 컴포넌트 정의
+  const components = {
+    Button,
+    Text,
+    Flex,
+    Heading,
+    Box,
+    Table,
+    TextField,
+    'TextField.Root': TextField.Root,
+    code: ({ className, children, ...props }: any) => {
+      const match = /language-(\w+)/.exec(className || '');
+      return match ? (
+        <SyntaxHighlighter language={match[1]} PreTag="div" {...props}>
+          {String(children).replace(/\n$/, '')}
+        </SyntaxHighlighter>
+      ) : (
+        <code className={className} {...props}>
+          {children}
+        </code>
+      );
+    },
+  };
+
   return (
     <Box p="5">
       <Heading size="7" mb="2">{data.title}</Heading>
       <Text size="3" color="gray" mb="5">{data.description}</Text>
-      <MdxContent source={content} />
+      <MDXRemote source={content} components={components} />
     </Box>
   );
 }
