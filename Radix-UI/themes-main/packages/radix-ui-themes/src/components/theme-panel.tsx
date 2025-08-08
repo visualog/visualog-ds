@@ -646,11 +646,9 @@ function disableAnimation() {
   };
 }
 
-function upperFirst(string: string | undefined) {
-  if (typeof string !== 'string' || string.length === 0) {
-    return '';
-  }
-  return string.charAt(0).toUpperCase() + string.slice(1);
+function upperFirst(str: string | undefined): string {
+  if (str === undefined) return '';
+  return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
 function updateRootAppearanceClass(appearance: 'light' | 'dark') {
